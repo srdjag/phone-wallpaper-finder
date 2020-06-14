@@ -50,8 +50,10 @@ $(document).ready(function () {
     $(".backgrounds").slick("slickPrev");
     document.querySelector(
       "body"
-    ).style.backgroundImage = `url('${imgArr[counter]}')`;
-    document.getElementById("dlLink").setAttribute("href", imgArr[counter]);
+    ).style.backgroundImage = `url('${imgArr[counter].reg}')`;
+    document
+      .getElementById("dlLink")
+      .setAttribute("href", imgArr[counter].full);
   }
   function moveRight() {
     if (imgArr.length == 0) return;
@@ -62,8 +64,10 @@ $(document).ready(function () {
     $(".backgrounds").slick("slickNext");
     document.querySelector(
       "body"
-    ).style.backgroundImage = `url('${imgArr[counter]}')`;
-    document.getElementById("dlLink").setAttribute("href", imgArr[counter]);
+    ).style.backgroundImage = `url('${imgArr[counter].reg}')`;
+    document
+      .getElementById("dlLink")
+      .setAttribute("href", imgArr[counter].full);
   }
 
   function init() {
@@ -152,7 +156,10 @@ $(document).ready(function () {
         data.results.forEach((image) => {
           let preload = new Image();
           preload.src = image.urls.regular;
-          imgArr.push(image.urls.regular);
+          imgArr.push({
+            reg: image.urls.regular,
+            full: image.urls.full,
+          });
           let node = document.createElement("DIV");
           node.classList.add("bg");
           node.style.backgroundImage = `url('${image.urls.regular}')`;
@@ -161,8 +168,8 @@ $(document).ready(function () {
         document.getElementById("searchTerm").value = "";
         document.querySelector(
           "body"
-        ).style.backgroundImage = `url('${imgArr[0]}')`;
-        document.getElementById("dlLink").setAttribute("href", imgArr[0]);
+        ).style.backgroundImage = `url('${imgArr[0].reg}')`;
+        document.getElementById("dlLink").setAttribute("href", imgArr[0].full);
       });
   }
 
